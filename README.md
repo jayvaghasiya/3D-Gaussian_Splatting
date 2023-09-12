@@ -8,7 +8,7 @@ Step-by-step Tutorial:
 first of all Cloning the Repository: 
 
 # HTTPS
-git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
+	git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 
 Hardware Requirements : CUDA-ready GPU with Compute Capability 7.0+
 			24 GB VRAM (to train to paper evaluation quality)
