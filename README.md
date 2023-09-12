@@ -6,12 +6,12 @@
 
 Step-by-step Tutorial:
 
-# Cloning the Repository: 
+## Cloning the Repository: 
 
 	#HTTPS
 	git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 
-# Optimizer
+## Optimizer
 
 ### Hardware Requirements
 
@@ -23,8 +23,9 @@ Step-by-step Tutorial:
 - Conda (recommended for easy setup)
 - C++ Compiler for PyTorch extensions (we used Visual Studio 2019 for Windows)
 - CUDA SDK 11 for PyTorch extensions, install *after* Visual Studio (we used 11.8, **known issues with 11.6**)
-- C++ Compiler and CUDA SDK must be compatible						
-# Setup
+- C++ Compiler and CUDA SDK must be compatible
+   				
+## Setup
 -> Do local Setup using following commands :
 
 	SET DISTUTILS_USE_SDK=1 # Windows only
@@ -33,20 +34,23 @@ Step-by-step Tutorial:
 
 --> Please note that this process assumes that you have CUDA SDK 11 installed, not 12. For modifications, see below.
 
-# Running 
+## Running 
 -> To run the optimizer, simply use following commands:
 	
 	python train.py -s <path to COLMAP or NeRF Synthetic dataset>
 
 <details><summary>Command Line Arguments for train.py</summary> 
 
---source_path / -s : Path to the source directory containing a COLMAP or Synthetic NeRF data set.
---model_path / -m  : Path where the trained model should be stored (output/<random> by default).
---images / -i      : Alternative subdirectory for COLMAP images (images by default).
---eval		   : Add this flag to use a MipNeRF360-style training/test split for evaluation.
-</details>
+  #### --source_path / -s
+  Path to the source directory containing a COLMAP or Synthetic NeRF data set.
+  #### --model_path / -m 
+  Path where the trained model should be stored (```output/<random>``` by default).
+  #### --images / -i
+  Alternative subdirectory for COLMAP images (```images``` by default).
+  #### --eval
+  Add this flag to use a MipNeRF360-style training/test split for evaluation.
 
-# Evaluation
+## Evaluation
 
 --> By default, the trained models use all available images in the dataset. To train them while withholding a test set for evaluation, use the --eval flag.     
 --> This way, you can render training/test sets and produce error metrics as follows:
