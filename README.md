@@ -240,10 +240,10 @@ A few tips to keep in mind to get the best results:
 Once you're done. Place your images in a folder called input, like this:
 
 📦 $FOLDER_PATH
- ┣ 📂 input
- ┃ ┣ 📜 000000.jpg
- ┃ ┣ 📜 000001.jpg
- ┃ ┣ 📜 ...
+ |- 📂 input
+   |- 📜 000000.jpg
+   |- 📜 000001.jpg
+   |-📜 ...
 
 ## Step 2: Obtain Camera poses
 
