@@ -49,6 +49,7 @@ Step-by-step Tutorial:
   Alternative subdirectory for COLMAP images (```images``` by default).
   #### --eval
   Add this flag to use a MipNeRF360-style training/test split for evaluation.
+  </details>
 
 ## Evaluation
 
