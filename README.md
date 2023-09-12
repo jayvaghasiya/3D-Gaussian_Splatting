@@ -26,16 +26,16 @@ Step-by-step Tutorial:
 - C++ Compiler and CUDA SDK must be compatible
    				
 ## Setup
--> Do local Setup using following commands :
+Do local Setup using following commands :
 
 	SET DISTUTILS_USE_SDK=1 # Windows only
 	conda env create --file environment.yml
 	conda activate gaussian_splatting
 
---> Please note that this process assumes that you have CUDA SDK 11 installed, not 12. For modifications, see below.
+Please note that this process assumes that you have CUDA SDK 11 installed, not 12. For modifications, see below.
 
 ## Running 
--> To run the optimizer, simply use following commands:
+To run the optimizer, simply use following commands:
 	
 	python train.py -s <path to COLMAP or NeRF Synthetic dataset>
 
@@ -96,6 +96,7 @@ This way, you can render training/test sets and produce error metrics as follows
   #### --model_paths / -m 
   Space-separated list of model paths for which metrics should be computed.
 </details>
+
 ## Interactive Viewers
 We provide two interactive viewers for our method: remote and real-time. Our viewing solutions are based on the [SIBR](https://sibr.gitlabpages.inria.fr/) framework, developed by the GRAPHDECO group for several novel-view synthesis projects.
 
