@@ -239,18 +239,12 @@ A few tips to keep in mind to get the best results:
 
 Once you're done. Place your images in a folder called input, like this:
 
-📦 $FOLDER_PATH
- |- 📂 input
-   |- 📜 000000.jpg
-   |- 📜 000001.jpg
-   |-📜 ...
-
 ```
-<location>
-|---📂input
-    |---📜<image 0>
-    |---📜<image 1>
-    |---...
+📦 $FOLDER_PATH
+|---📂 input
+    |---📜 <image 0>
+    |---📜 <image 1>
+    |---📜 ...
 ```
 
 ## Step 2: Obtain Camera poses
@@ -275,15 +269,15 @@ go to the following link for installtion of colmap
 - Once COLMAP has finished, you will see the camera poses in the GUI (in red) along with a sparse pointcloud of the scene. Now export the camera poses by clicking on File > Export model and save it in a folder distorted at the same level as the input folder. You can now close COLMAP.
 
 ## The folder structure of your model dataset should now look like this:
-
+```
 📦 $FOLDER_PATH
- ┣ 📂 input
- ┣ 📂 distorted
- ┣ 📂 0
-   ┣ 📜 points3D.bin
-   ┣ 📜 images.bin
-   ┗ 📜 cameras.bin
-
+ |---📂 input
+ |---📂 distorted
+ |---📂 0
+      |---📜 points3D.bin
+      |---📜 images.bin
+      |---📜 cameras.bin
+```
 ## run the following script:
 			python convert.py -s $FOLDER_PATH --skip_matching
 
