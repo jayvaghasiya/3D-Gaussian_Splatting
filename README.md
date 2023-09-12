@@ -238,13 +238,21 @@ A few tips to keep in mind to get the best results:
 - Lock the exposure of your camera. If it's not consistent between frames, it will cause flickering in the final model.
 
 Once you're done. Place your images in a folder called input, like this:
-```
+
 📦 $FOLDER_PATH
  |- 📂 input
    |- 📜 000000.jpg
    |- 📜 000001.jpg
    |-📜 ...
+
 ```
+<location>
+|---📂input
+    |---📜<image 0>
+    |---📜<image 1>
+    |---...
+```
+
 ## Step 2: Obtain Camera poses
 
 Obtaining camera poses is probably to most finicky step of the entire process, for inexperienced users. The goal is to obtain the position and orientation of the camera for each frame. This is called the camera pose. There are several ways to do so:
