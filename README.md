@@ -263,7 +263,7 @@ go to the following link for installtion of colmap
 - Open COLMAP GUI. On linux, you can run colmap gui in a terminal. On Windows and Mac, you can open the COLMAPapplication.
 - Start a new project by clicking on File > New project. A dialog opens up. Create a new database by clicking on New and calling it database.db.For Images, select the folder where your images are located. Then click on Save.
 
-  <img height="200" src="assets/1.jpg">
+  <img height="200" width="50%" src="assets/1.jpg">
 
 - Run Feature extraction by clicking on Processing > Feature extraction. Keep most parameters as default. Check the "Shared for all images" options (if you didn't zoom in or out between frames), and set first_octave to 0 (this will be faster than with the default -1). Then click on Extract (this will take a few seconds).
 
@@ -296,41 +296,49 @@ go to the following link for installtion of colmap
 			python convert.py -s $FOLDER_PATH --skip_matching
 
 The folder structure of your model dataset should now look like this:
-
+```
 📦 $FOLDER_PATH
- ┣ 📂 (input)
- ┣ 📂 (distorted)
- ┣ 📂 images
- ┣ 📂 sparse
- ┃ ┣ 📂 0
- ┃ ┃ ┣ 📜 points3D.bin
- ┃ ┃ ┣ 📜 images.bin
- ┃ ┃ ┗ 📜 cameras.bin
-
+ |--- 📂 (input)
+ |--- 📂 (distorted)
+ |--- 📂 images
+ |--- 📂 sparse
+   |--- 📂 0
+     |---📜 points3D.bin
+     |--- 📜 images.bin
+     |--- 📜 cameras.bin
+```
 ## Step 3: Train the 3D Gaussian Splatting model
 
-				python train.py -s $FOLDER_PATH -m $FOLDER_PATH/output
+Installation is extremely easy as the codebase has almost no dependencies. Just follow the instructions in the README. If you already have a Python environment with PyTorch, you can simply run:
+	
+ 	pip install plyfile tqdm
+	pip install submodules/diff-gaussian-rasterization
+	pip install submodules/simple-knn
+
+Once installed, you can train the model by running:
+
+    python train.py -s $FOLDER_PATH -m $FOLDER_PATH/output
 
 This will save the model in the $FOLDER_PATH/output folder.
 
 ## Step 4: Visualize the model
  
 The folder structure of your model dataset should now look like this:
-
+```
 📦 $FOLDER_PATH
- ┣ 📂 images
- ┣ 📂 sparse
- ┣ 📂 output
- ┃ ┣ 📜 cameras.json
- ┃ ┣ 📜 cfg_args
- ┃ ┗ 📜 input.ply
- ┃ ┣ 📂 point_cloud
- ┃ ┃ ┣ 📂 iteration_7000
- ┃ ┃ ┃ ┗ 📜 point_cloud.ply
- ┃ ┃ ┣ 📂 iteration_30000
- ┃ ┃ ┃ ┗ 📜 point_cloud.ply
+ |--- 📂 images
+ |--- 📂 sparse
+ |--- 📂 output
+       |--- 📜 cameras.json
+       |--- 📜 cfg_args
+       |--- 📜 input.ply
+       |--- 📂 point_cloud
+             |--- 📂 iteration_7000
+                  |--- 📜 point_cloud.ply
+             |--- 📂 iteration_30000
+                  |---📜 point_cloud.ply
 
-
+```
 - Once installed, find the SIBR_gaussianViewer_app binary and run it with the path to the model as argument:
 
 						SIBR_gaussianViewer_app -m $FOLDER_PATH/output
