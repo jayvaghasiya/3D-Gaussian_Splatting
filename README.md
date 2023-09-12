@@ -7,12 +7,15 @@ Step-by-step Tutorial:
 
 # Cloning the Repository: 
 
-#HTTPS
+	#HTTPS
 	git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 
-Hardware Requirements : CUDA-ready GPU with Compute Capability 7.0+
-			24 GB VRAM (to train to paper evaluation quality)
-			Please see FAQ for smaller VRAM configurations
+# Optimizer
+
+Hardware Requirements : 
+	CUDA-ready GPU with Compute Capability 7.0+
+ 	24 GB VRAM (to train to paper evaluation quality)
+  	Please see FAQ for smaller VRAM configurations
 	
 
 Software Requirements: 	Conda (recommended for easy setup)
