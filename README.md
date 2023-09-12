@@ -224,16 +224,18 @@ SIBR has many other functionalities, please see the [documentation](https://sibr
 
 # How to train your own models? (Tutorial)
 
-Important: before starting, Make sure that You have completed the above steps. 
---> In particular, this will require a CUDA-ready GPU with 24 GB of VRAM.
+## Important: 
+before starting, Make sure that You have completed the above steps. 
+In particular, this will require a CUDA-ready GPU with 24 GB of VRAM.
 
-Step 1: Record the scene
+## Step 1: Record the scene
 
-Recording the scene is one of the most important steps because that's what the model will be trained on. You can either record a video (and extract the frames afterwards) or take individual photos. Be sure to move around the scene, and to capture it from different angles. Generally, the more images you have, the better the model will be. A few tips to keep in mind to get the best results:
+Recording the scene is one of the most important steps because that's what the model will be trained on. You can either record a video (and extract the frames afterwards) or take individual photos. Be sure to move around the scene, and to capture it from different angles. Generally, the more images you have, the better the model will be. 
+A few tips to keep in mind to get the best results:
 
---> Avoid moving too fast, as it can cause blurry frames (which 3D Gaussian Splats will try to reproduce)
---> Try to aim for 200-1000 images. Less than 200 images will result in a low quality model, and more than 1000 images will take a long time to process in step 2.
---> Lock the exposure of your camera. If it's not consistent between frames, it will cause flickering in the final model.
+- Avoid moving too fast, as it can cause blurry frames (which 3D Gaussian Splats will try to reproduce)
+- Try to aim for 200-1000 images. Less than 200 images will result in a low quality model, and more than 1000 images will take a long time to process in step 2.
+- Lock the exposure of your camera. If it's not consistent between frames, it will cause flickering in the final model.
 
 Once you're done. Place your images in a folder called input, like this:
 
@@ -243,44 +245,41 @@ Once you're done. Place your images in a folder called input, like this:
  ┃ ┣ 📜 000001.jpg
  ┃ ┣ 📜 ...
 
-Step 2: Obtain Camera poses
+## Step 2: Obtain Camera poses
 
 Obtaining camera poses is probably to most finicky step of the entire process, for inexperienced users. The goal is to obtain the position and orientation of the camera for each frame. This is called the camera pose. There are several ways to do so:
 
--> Use COLMAP. COLMAP is a free and open-source Structure-from-Motion (SfM) software. It will take your images as input, and output the camera poses. It comes 
-with a GUI and is available on Windows, Mac, and Linux.
+- Use COLMAP. COLMAP is a free and open-source Structure-from-Motion (SfM) software. It will take your images as input, and output the camera poses. It comes with a GUI and is available on Windows,Mac, and Linux.
 
-# Installation of colmap : https://colmap.github.io/install.html
+## Installation of colmap : 
+go to the following link for installtion of colmap 
 
-# After installed the colmap,
+	https://colmap.github.io/install.html
 
---> Open COLMAP GUI. On linux, you can run colmap gui in a terminal. On Windows and Mac, you can open the COLMAPapplication.
+## After installed the colmap,
 
---> Start a new project by clicking on File > New project. A dialog opens up. Create a new database by clicking on New and calling it database.db. 
---> For Images, select the folder where your images are located. Then click on Save.
+- Open COLMAP GUI. On linux, you can run colmap gui in a terminal. On Windows and Mac, you can open the COLMAPapplication.
+- Start a new project by clicking on File > New project. A dialog opens up. Create a new database by clicking on New and calling it database.db. 
+- For Images, select the folder where your images are located. Then click on Save.
+- Run Feature extraction by clicking on Processing > Feature extraction. Keep most parameters as default. Check the "Shared for all images" options (if you didn't zoom in or out between frames), and set first_octave to 0 (this will be faster than with the default -1). Then click on Extract (this will take a few seconds).
+- Run Feature matching by clicking on Processing > Feature matching. Because you have recorded the object by walking around it, neighboring images should be close in space, so you can use the Sequential matching mode. This will be faster than the default Exhaustive mode (if reconstruction fails, you can try again with Exhaustive). Then click on Run (this will take a few seconds to a minute).
+- Now comes the last step: Reconstruction. This will take the longest (from a few minutes to a few hours depending on the number of images). First, click on Reconstruction > Reconstruction options. Uncheck multiple_models (since we're reconstructing a single scene) and close the window. Then start the reconstruction optimization by clicking on Reconstruction > Start reconstruction.
+- Once COLMAP has finished, you will see the camera poses in the GUI (in red) along with a sparse pointcloud of the scene. Now export the camera poses by clicking on File > Export model and save it in a folder distorted at the same level as the input folder. You can now close COLMAP.
 
---> Run Feature extraction by clicking on Processing > Feature extraction. Keep most parameters as default. Check the "Shared for all images" options (if you didn't zoom in or out between frames), and set first_octave to 0 (this will be faster than with the default -1). Then click on Extract (this will take a few seconds).
+## The folder structure of your model dataset should now look like this:
 
---> Run Feature matching by clicking on Processing > Feature matching. Because you have recorded the object by walking around it, neighboring images should be close in space, so you can use the Sequential matching mode. This will be faster than the default Exhaustive mode (if reconstruction fails, you can try again with Exhaustive). Then click on Run (this will take a few seconds to a minute).
+📦 $FOLDER_PATH
+ ┣ 📂 input
+ ┣ 📂 distorted
+ ┣ 📂 0
+   ┣ 📜 points3D.bin
+   ┣ 📜 images.bin
+   ┗ 📜 cameras.bin
 
---> Now comes the last step: Reconstruction. This will take the longest (from a few minutes to a few hours depending on the number of images). First, click on Reconstruction > Reconstruction options. Uncheck multiple_models (since we're reconstructing a single scene) and close the window. Then start the reconstruction optimization by clicking on Reconstruction > Start reconstruction.
+## run the following script:
+			python convert.py -s $FOLDER_PATH --skip_matching
 
--->Once COLMAP has finished, you will see the camera poses in the GUI (in red) along with a sparse pointcloud of the scene. Now export the camera poses by clicking on File > Export model and save it in a folder distorted at the same level as the input folder. You can now close COLMAP.
-
-# The folder structure of your model dataset should now look like this:
-
-					       📦 $FOLDER_PATH
- ┣ 														 |_	📂 input
- ┣ 														 |_	📂 distorted
- ┃ ┣ 														 |_	📂 0
- ┃ ┃ 															┣ |_📜 points3D.bin
- ┃ ┃ ┣ 														 |_📜 images.bin
- ┃ ┃ ┗ 														 |_📜 cameras.bin
-
-# run the following script:
-				python convert.py -s $FOLDER_PATH --skip_matching
-
---> The folder structure of your model dataset should now look like this:
+The folder structure of your model dataset should now look like this:
 
 📦 $FOLDER_PATH
  ┣ 📂 (input)
@@ -292,15 +291,15 @@ with a GUI and is available on Windows, Mac, and Linux.
  ┃ ┃ ┣ 📜 images.bin
  ┃ ┃ ┗ 📜 cameras.bin
 
-Step 3: Train the 3D Gaussian Splatting model
+## Step 3: Train the 3D Gaussian Splatting model
 
 				python train.py -s $FOLDER_PATH -m $FOLDER_PATH/output
 
--->This will save the model in the $FOLDER_PATH/output folder.
+This will save the model in the $FOLDER_PATH/output folder.
 
-Step 4: Visualize the model
+## Step 4: Visualize the model
  
--->The folder structure of your model dataset should now look like this:
+The folder structure of your model dataset should now look like this:
 
 📦 $FOLDER_PATH
  ┣ 📂 images
@@ -316,12 +315,12 @@ Step 4: Visualize the model
  ┃ ┃ ┃ ┗ 📜 point_cloud.ply
 
 
---> Once installed, find the SIBR_gaussianViewer_app binary and run it with the path to the model as argument:
+- Once installed, find the SIBR_gaussianViewer_app binary and run it with the path to the model as argument:
 
 						SIBR_gaussianViewer_app -m $FOLDER_PATH/output
 
 
-## You get a beautiful visualizer of your trained model! Make sure to select Trackball mode for a better interactive experience.
+### You get a beautiful visualizer of your trained model! Make sure to select Trackball mode for a better interactive experience.
 
 
 
