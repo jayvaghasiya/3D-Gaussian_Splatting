@@ -1,7 +1,8 @@
-# 3D-Gaussian_Splatting
+# 3D Gaussian Splatting for Real-Time Radiance Field Rendering
 
-What are 3D Gaussian Splats?
-At a high level, 3D Gaussian splats, like NeRFs or photogrammetry methods, are a way to create a 3D scene using a set of 2D images. Practically, this means that all you need is a video or a set of photos of a scene, to obtain a 3D representation of it — enabling you to reshoot it, or render it from any angle.
+
+## What are 3D Gaussian Splats?
+- At a high level, 3D Gaussian splats, like NeRFs or photogrammetry methods, are a way to create a 3D scene using a set of 2D images. Practically, this means that all you need is a video or a set of photos of a scene, to obtain a 3D representation of it — enabling you to reshoot it, or render it from any angle.
 
 Step-by-step Tutorial:
 
