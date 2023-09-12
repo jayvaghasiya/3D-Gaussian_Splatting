@@ -275,11 +275,11 @@ go to the following link for installtion of colmap
 
 - Now comes the last step: Reconstruction. This will take the longest (from a few minutes to a few hours depending on the number of images). First, click on Reconstruction > Reconstruction options.Uncheck multiple_models (since we're reconstructing a single scene) and close the window. Then start the reconstruction optimization by clicking on Reconstruction > Start reconstruction.
 
-  <img height="200" src="assets/4.jpg">
+  <img height="50%" width="50%" src="assets/4.jpg">
 
 - Once COLMAP has finished, you will see the camera poses in the GUI (in red) along with a sparse pointcloud of the scene. Now export the camera poses by clicking on File > Export model and save it in a folder distorted at the same level as the input folder. You can now close COLMAP.
 
-  <img height="200" src="assets/5.jpg">
+  <img height="50%" width="50%" src="assets/5.jpg">
 
 
 ## The folder structure of your model dataset should now look like this:
