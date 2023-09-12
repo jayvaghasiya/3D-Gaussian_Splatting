@@ -5,9 +5,9 @@ At a high level, 3D Gaussian splats, like NeRFs or photogrammetry methods, are a
 
 Step-by-step Tutorial:
 
-first of all Cloning the Repository: 
+# Cloning the Repository: 
 
-# HTTPS
+#HTTPS
 	git clone https://github.com/graphdeco-inria/gaussian-splatting --recursive
 
 Hardware Requirements : CUDA-ready GPU with Compute Capability 7.0+
@@ -40,6 +40,7 @@ Software Requirements: 	Conda (recommended for easy setup)
 --images / -i      : Alternative subdirectory for COLMAP images (images by default).
 --eval		   : Add this flag to use a MipNeRF360-style training/test split for evaluation.
 </details>
+
 # Evaluation
 
 --> By default, the trained models use all available images in the dataset. To train them while withholding a test set for evaluation, use the --eval flag.     
