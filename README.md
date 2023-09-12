@@ -12,16 +12,17 @@ Step-by-step Tutorial:
 
 # Optimizer
 
-Hardware Requirements : 
-	CUDA-ready GPU with Compute Capability 7.0+
- 	24 GB VRAM (to train to paper evaluation quality)
-  	Please see FAQ for smaller VRAM configurations
-	
+### Hardware Requirements
 
-Software Requirements: 	Conda (recommended for easy setup)
-			C++ Compiler for PyTorch extensions (we used Visual Studio 2019 for Windows)
-			CUDA SDK 11 for PyTorch extensions, install after Visual Studio (we used 11.8, known issues with 11.6)
-			C++ Compiler and CUDA SDK must be compatible							
+- CUDA-ready GPU with Compute Capability 7.0+
+- 24 GB VRAM (to train to paper evaluation quality)
+- Please see FAQ for smaller VRAM configurations
+
+### Software Requirements
+- Conda (recommended for easy setup)
+- C++ Compiler for PyTorch extensions (we used Visual Studio 2019 for Windows)
+- CUDA SDK 11 for PyTorch extensions, install *after* Visual Studio (we used 11.8, **known issues with 11.6**)
+- C++ Compiler and CUDA SDK must be compatible						
 # Setup
 -> Do local Setup using following commands :
 
