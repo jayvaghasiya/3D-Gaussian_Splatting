@@ -33,13 +33,13 @@ Software Requirements: 	Conda (recommended for easy setup)
 	
 	python train.py -s <path to COLMAP or NeRF Synthetic dataset>
 
---> Command Line Arguments for train.py : 
+<details><summary>Command Line Arguments for train.py</summary> 
 
 			--source_path / -s : Path to the source directory containing a COLMAP or Synthetic NeRF data set.
 			--model_path / -m  : Path where the trained model should be stored (output/<random> by default).
 			--images / -i      : Alternative subdirectory for COLMAP images (images by default).
 			--eval		   : Add this flag to use a MipNeRF360-style training/test split for evaluation.
-
+</details>
 # Evaluation
 
 --> By default, the trained models use all available images in the dataset. To train them while withholding a test set for evaluation, use the --eval flag.     
