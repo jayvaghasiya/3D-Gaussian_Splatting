@@ -263,15 +263,15 @@ go to the following link for installtion of colmap
 - Open COLMAP GUI. On linux, you can run colmap gui in a terminal. On Windows and Mac, you can open the COLMAPapplication.
 - Start a new project by clicking on File > New project. A dialog opens up. Create a new database by clicking on New and calling it database.db.For Images, select the folder where your images are located. Then click on Save.
 
-  <img height="200" width="50%" src="assets/1.jpg">
+  <img height="50%" width="50%" src="assets/1.jpg">
 
 - Run Feature extraction by clicking on Processing > Feature extraction. Keep most parameters as default. Check the "Shared for all images" options (if you didn't zoom in or out between frames), and set first_octave to 0 (this will be faster than with the default -1). Then click on Extract (this will take a few seconds).
 
-  <img height="200" src="assets/2.jpg">
+  <img height="50%" width="50%" src="assets/2.jpg">
 
 - Run Feature matching by clicking on Processing > Feature matching. Because you have recorded the object by walking around it, neighboring images should be close in space, so you can use the Sequential matching mode. This will be faster than the default Exhaustive mode (if reconstruction fails, you can try again with Exhaustive). Then click on Run (this will take a few seconds to a minute).
 
-  <img height="200" src="assets/3.jpg">
+  <img height="50%" width="50%" src="assets/3.jpg">
 
 - Now comes the last step: Reconstruction. This will take the longest (from a few minutes to a few hours depending on the number of images). First, click on Reconstruction > Reconstruction options.Uncheck multiple_models (since we're reconstructing a single scene) and close the window. Then start the reconstruction optimization by clicking on Reconstruction > Start reconstruction.
 
